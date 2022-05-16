@@ -34,15 +34,6 @@ jobs:
         if: github.event_name == 'pull_request'
         run: terraform plan -no-color -input=false
         continue-on-error: true
-      - name: Update Pull Request
-        uses: actions/github-script
-        if: github.event_name == 'pull_request'
-        env:
-          PLAN: "terraform\n${{ steps.plan.outputs.stdout }}"
-        with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
-          script: |
-            const output = `#### Terraform Format and Style 🖌\`${{ steps.fmt.outcome }}\`
       - name: Terraform Plan Status
         if: steps.plan.outcome == 'failure'
         run: exit 1
