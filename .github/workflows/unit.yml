@@ -4,6 +4,8 @@ jobs:
   go-tests:
     name: Run Go Unit Tests
     runs-on: ubuntu-latest
+    env: 
+          ACTIONS_ALLOW_UNSECURE_COMMANDS: 'true'
     steps:
       - uses: actions/checkout@v3
       - uses: actions/setup-go@v3
