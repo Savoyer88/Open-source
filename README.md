@@ -1,5 +1,5 @@
 # Open-source
-1)  Using Terraform I coded a module that provisions a VM instance in AWS Cloud. Module performs the following:
+1.  Using Terraform I coded a module that provisions a VM instance in AWS Cloud. Module performs the following:
 
 1.1 Creates an Ubuntu VM instance based on the input parameters passed to the module.
 
@@ -28,12 +28,9 @@ random string: dg64
 The "env_code” string must be parsed from the environment variable using a Terraform function inside the module.
 
 Assume that a network (VPC) is already created, "network-prod" . If it's required by the provider, declare a subnetwork as well.
-
 Variables such as Region, Zone, Labels should not be hardcoded.
-
 Public IP provisioning must be contoled by a Boolean switch: true/false.
-
-For mandaroty variables refer to the next secion. Feel free to introduce any other variuables to support the functionality of your module.
+For mandaroty variables refer to the next section. Feel free to introduce any other variuables to support the functionality of your module.
 
 Module Inputs:
 
@@ -46,13 +43,15 @@ machine_type	string	no	n2-standard
 network_id	string	no	network-prod
 public_ip	boolean	no	false
 labels	map	no	-
+
 Module Outputs:
 
 Output	Type	Value
 vm_name	string	vm-instance full name
 Private IP address	string	string
 Public IP address	string	string
-Root Password	string	string
+*Root Password	string	string - not completed, I have added my comments with an idea how to complete it
+
 3. Write Terraform infrastructure code for deploying a VM instance in Cloud using the module you have created in the previous task.
 
 3.1 Demonstrate “structure” for your Terraform code files. For instance, a separate TF file for variables, etc..
