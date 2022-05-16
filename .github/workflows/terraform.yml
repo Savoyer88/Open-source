@@ -42,8 +42,6 @@ jobs:
           AWS_SECRET_ACCESS_KEY:  ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           TF_CLI_ARGS: '-var-file="terraform.tfvars"'
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      - name: Terraform Security Scan
-        uses: triat/terraform-security-scan@v3
       - name: Terraform Destroy
         run: terraform destroy -auto-approve 
         env:
