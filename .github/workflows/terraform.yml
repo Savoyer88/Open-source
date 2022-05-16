@@ -38,8 +38,8 @@ jobs:
         run: terraform apply -var-file="terraform.tfvars" -auto-approve 
         env:
           AWS_S3_BUCKET: ${{ secrets.AWS_S3_BUCKET }}
-          AWS_ACCESS_KEY_ID:  ${{ secrets.AWS_ACCESS_KEY_ID_DEV }}
-          AWS_SECRET_ACCESS_KEY:  ${{ secrets.AWS_SECRET_ACCESS_KEY_DEV }}
+          AWS_ACCESS_KEY_ID:  ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY:  ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           TF_CLI_ARGS: '-var-file="terraform.tfvars"'
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
  
