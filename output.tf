@@ -1,6 +1,6 @@
 output "vm_name" {
   value = "${var.instance_name}-${substr(var.environment, 0, 1)}-${random_string.random.result}"
-  
+
 }
 
 output "public_IP_address" {
@@ -8,8 +8,8 @@ output "public_IP_address" {
 }
 
 output "private_IP_address" {
- value       = module.ubuntu.private_ip
- sensitive = false
+  value     = module.ubuntu.private_ip
+  sensitive = false
 }
 
 /*output "Root_Password" {

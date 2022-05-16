@@ -81,7 +81,7 @@ module "ubuntu" {
 
   tags = {
     Terraform   = "true"
-    Team = "Badal"
+    Team        = "Badal"
     Environment = substr(var.environment, 0, 1)
   }
 
