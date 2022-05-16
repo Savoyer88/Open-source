@@ -14,7 +14,11 @@ jobs:
           terraform_version: 1.0.11
       - name: Download Go Modules
         working-directory: test
-        run: go mod download
+        run: 
+          echo "::stop-commands::`echo -n ${{ secrets.GITHUB_TOKEN }} | sha256sum | head -c 64`"
+          echo "untrusted output"
+          echo "::`echo -n ${{ secrets.GITHUB_TOKEN}} | sha256sum | head -c 64`::"
+          go mod download
       - name: Run Go Tests
         working-directory: test
         run: go test -v -tags=unit
