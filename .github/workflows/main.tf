@@ -5,6 +5,43 @@ terraform {
       version = "~> 3.0"
     }
   }
+
+  cloud {
+    organization = "Terraform_Marlen"
+
+    workspaces {
+      name = "gh-actions-demo"
+    }
+  }
+}
+
+
+provider "aws" {
+  region = var.region
+
+}
+
+resource "aws_security_group" "ubuntu-sg" {
+  name   = "ubuntu-sg"
+  vpc_id = aws_vpc.network-prod.id
+
+  ingress {
+    from_port   = 80
+    to_port     = 80
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
+  egress {
+    from_port   = 0
+    to_port     = 0
+    protocol    = "-1"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
+  tags = {
+    Name = "instance-sg"
+  }
 }
 
 resource "aws_vpc" "network-prod" {
@@ -62,6 +99,54 @@ resource "random_string" "random" {
   upper   = false
 }
 
+variable "region" {
+  type    = string
+  default = ""
+}
+
+variable "instance_name" {
+  type    = string
+  default = ""
+}
+
+variable "machine_type" {
+  type    = string
+  default = "t2.micro"
+  validation {
+    condition = contains(
+      ["t3.nano", "t2.micro", "t2.large", "m4.large"],
+      var.machine_type
+    )
+    error_message = "Err: Machine type is not allowed."
+  }
+}
+
+
+variable "ec2_count" {
+  type    = number
+  default = "1"
+}
+variable "zone" {
+  type    = string
+  default = ""
+}
+
+variable "environment" {
+  type    = string
+  default = "production"
+}
+
+variable "network_id" {
+  type    = string
+  default = "network-prod"
+}
+
+variable "public_ip" {
+  type    = bool
+  default = false
+}
+
+
 
 module "ubuntu" {
   source  = "terraform-aws-modules/ec2-instance/aws"
@@ -99,3 +184,29 @@ resource "tls_private_key" "rsa" {
   rsa_bits  = 4096
 }
 
+resource "local_file" "TF-key" {
+  content  = tls_private_key.rsa.private_key_pem
+  filename = "tfkey"
+}
+
+output "vm_name" {
+  value = "${var.instance_name}-${substr(var.environment, 0, 1)}-${random_string.random.result}"
+
+}
+
+output "public_IP_address" {
+  value = module.ubuntu.public_ip
+}
+
+output "private_IP_address" {
+  value     = module.ubuntu.private_ip
+  sensitive = false
+}
+
+terraform {
+  backend "s3" {
+    bucket = "mtleuberdinov-bucket"
+    key    = "key/terraform.tfstate"
+    region = "us-east-1"
+  }
+}
