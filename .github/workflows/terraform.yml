@@ -35,7 +35,6 @@ jobs:
         run: terraform plan -var-file="terraform.tfvars"
         continue-on-error: true
       - name: Terraform Apply
-        if: github.ref == 'refs/heads/main' && github.event_name == 'push'
         run: terraform apply -var-file="terraform.tfvars" -auto-approve 
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
