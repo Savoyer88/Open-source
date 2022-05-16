@@ -1,0 +1,21 @@
+#name: Cleanup
+
+#on:
+#  pull_request:
+#    types: [closed] 
+
+#jobs:
+#  destroy_workspace:
+#    runs-on: ubuntu-latest
+#    env: 
+#      AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+#      AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }} 
+#    name: Destroy terraform workspace
+#    steps:
+#      - name: Checkout
+#        uses: actions/checkout@v2
+
+#      - name: terraform destroy
+#        uses: dflook/terraform-destroy@v1
+        
+    
