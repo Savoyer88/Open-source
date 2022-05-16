@@ -1,3 +1,5 @@
+Tasks 1, 2 and 3.
+
 1.  Using Terraform I coded a module that provisions a VM instance in AWS Cloud. Module performs the following:
 
 1.1 Creates an Ubuntu VM instance based on the input parameters passed to the module.
