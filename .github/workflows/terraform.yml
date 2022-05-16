@@ -8,6 +8,11 @@ jobs:
   terraform:
     name: 'Terraform'
     runs-on: ubuntu-latest
+    env: 
+      AWS_S3_BUCKET: ${{ secrets.AWS_S3_BUCKET }}
+      AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+      AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_AWS_SECRET_ACCESS_KEY }}
+      # TF_LOG: debug
     steps:
       - name: Checkout
         uses: actions/checkout@v3
