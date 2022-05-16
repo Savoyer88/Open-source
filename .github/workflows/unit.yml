@@ -15,10 +15,9 @@ jobs:
       - name: Download Go Modules
         working-directory: test
         run: 
-          echo "::stop-commands::`echo -n ${{ secrets.GITHUB_TOKEN }} | sha256sum | head -c 64`"
-          echo "untrusted output"
-          echo "::`echo -n ${{ secrets.GITHUB_TOKEN}} | sha256sum | head -c 64`::"
           go mod download
+        env: 
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Run Go Tests
         working-directory: test
         run: go test -v -tags=unit
