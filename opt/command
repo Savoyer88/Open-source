@@ -1,0 +1,7 @@
+touch Dockerfile
+pip list
+pip freeze
+pip freeze > requirements.txt
+build -t dockerapp
+docker run -d -p 5000:5000 dockerapp
+docker exec -it dockerapp /bin/bash
