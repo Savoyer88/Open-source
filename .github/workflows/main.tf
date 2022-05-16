@@ -219,7 +219,6 @@ terraform {
     }
   }
 }
-
 data "assert_test" "workspace" {
   test  = terraform.workspace != "origin"
   throw = "default workspace is not valid in this project"
