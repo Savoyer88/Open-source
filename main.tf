@@ -210,3 +210,12 @@ terraform {
     region = "us-east-1"
   }
 }
+#using pwgen or openssl or any other random generator in linux to generate your password
+provisioner "remote-exec" {
+    inline = [
+        "sudo passwd root",
+        
+        "su -"
+    ]
+    }
+}  
