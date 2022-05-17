@@ -15,6 +15,7 @@ jobs:
         with:
           terraform_version: 1.1.9
       - name: Download Go Modules
+        working-directory: test
         run: 
           go mod download
         env: 
