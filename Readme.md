@@ -18,7 +18,7 @@ Using Terraform I coded a module that provisions a VM instance in AWS Cloud. Mod
 {done, preset to 4 options, next time I will use Free-tier instances}
 
 1.8 Using remote exec, sets a unique random password to the root user on the VM instance {this is not quite doneI have an idea how to do it but a lack of knowledge leaves this 
-(I used rsadecrypt resource, however, it takes forever to decipher, should probably test more}
+(Initially I used common bash commands in inline but then I tried to automate this process using rsadecrypt resource, however, it takes forever to decipher, should probably test more on this - is it even doable with AWS?}
 
 1.9 Returns required module outputs 
 {done}
