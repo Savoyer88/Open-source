@@ -1,12 +1,19 @@
 #!/bin/bash
 # What to backup. 
 # This will check if the directory exists and if not - will create the entire path
-mkdir -p “/var/lib/backups”
+sudo mkdir -p “/var/lib/backups”
 #Check for available disk space on a system:
 df - h
 #Check the size of the directory which is being backed up
 du -s -h /var/www
+
+# creating a date variable 
+vi sys_backup.sh
+#!/bin/bash
+#backup script
+var_date=`date+%Y%m%d`
+
 #creating a backup, not using compression here
-sudo tar -cvpf /var/lib/backups/www-backup-YYY-MM-DD.tar.gz -C /var/www
+sudo tar -cvpf /var/lib/backups/www-backup-$var_date.tar.gz -C /var/www
 #checking the destination folder for a tarball
 ls -lh /var/lib/backups/
