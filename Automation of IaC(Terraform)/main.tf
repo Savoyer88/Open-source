@@ -7,7 +7,7 @@ terraform {
   }
 
   cloud {
-    organization = "Terraform_Marlen"
+    organization = "XXX"
 
     workspaces {
       name = "gh-actions-demo"
@@ -166,7 +166,7 @@ module "ubuntu" {
 
   tags = {
     Terraform   = "true"
-    Team        = "Badal"
+    Team        = "XXX"
     Environment = substr(var.environment, 0, 1)
   }
 
@@ -205,7 +205,7 @@ output "private_IP_address" {
 
 terraform {
   backend "s3" {
-    bucket = "mtleuberdinov-bucket"
+    bucket = "XXX-bucket"
     key    = "key/terraform.tfstate"
     region = "us-east-1"
   }
