@@ -1,0 +1,5 @@
+.vscode/
+challenge_venv/
+__pycache__/
+.coverage
+
