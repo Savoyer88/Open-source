@@ -1,0 +1,11 @@
+ImageName: 'ubuntu:20.04'
+fileExistenceTests:
+  - name: 'Dockerfile'
+    WORKDIR /app
+    shouldExist: true
+    uid: 5000
+    gid: 5000
+    ENTRYPOINT [ "python" ]
+fileContentTests:
+  - name: 'Dockerfile'
+    path: '/app'
